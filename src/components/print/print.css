@@ -1,0 +1,32 @@
+#div1 {
+   display: inline-block;
+}
+
+.image { 
+    position: relative; 
+    width: 100%; /* for IE 6 */
+ }
+
+ .name {
+    position: absolute; 
+    top: 120px; 
+    left: -309px; 
+    width: 100%;
+    text-align: center;
+    font-size:30px; 
+    font-family: sans-serif;
+    letter-spacing: -1px;  
+    padding: 10px;
+ }
+
+ .number {
+    position: absolute; 
+    top: 140px; 
+    left: -309px; 
+    width: 100%;
+    text-align: center;
+    font-size:120px; 
+    font-family: sans-serif;
+    letter-spacing: -1px;  
+    padding: 10px;
+ }

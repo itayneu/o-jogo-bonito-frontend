@@ -1,0 +1,23 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+const CheckoutMessage = () => {
+  return (
+    <React.Fragment>
+      <div className="container" style={{color:"white"}}>
+        <div className="centered display-4">Thank you for your order!</div>
+        <div className="centerd display-5">
+          <Link
+            className="btn btn-dark btn-sm"
+            to="shop/products"
+            role="button"
+          >
+            Back to the shop
+          </Link>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default CheckoutMessage;

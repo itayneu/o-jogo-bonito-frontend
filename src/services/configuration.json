@@ -1,0 +1,5 @@
+{
+    "mainRoute": "http://localhost:3005",
+    "imageData": "http://localhost:3005/static/itemsImages"
+  }
+  
