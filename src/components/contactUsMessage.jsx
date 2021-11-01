@@ -6,7 +6,7 @@ const contactUsMessage = () => {
   return (
     <React.Fragment>
       <NavBar currentPage="contactUs" />
-      <div className="container">
+      <div className="container" style={{color:"white"}}>
         <div className="centered display-4">Thank you for your inquiry!</div>
         <div className="centerd display-5">
           <Link

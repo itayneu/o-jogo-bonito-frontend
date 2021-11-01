@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchBox = ({ value, onChange, dataType }) => {
   let placeholder =
-    dataType === "Users" ? "first name, last name or username" : "item name";
+    dataType === "Users" ? "first name, last name or username" : "item name or brand";
   return (
     <input
       type="text"

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+import _ from "lodash";
+import { Link } from "react-router-dom";
 import Pagination from "./common/pagination";
 import { paginate } from "../utils/paginate";
-import _ from "lodash";
 import CartTable from "./cartTable";
-import { Link } from "react-router-dom";
 import NavBar from "./navBar";
 
 class Cart extends Component {
@@ -28,15 +28,15 @@ class Cart extends Component {
     const { pageSize, currentPage, sortColumn } = this.state;
     const sorted = _.orderBy(items, [sortColumn.path], [sortColumn.order]);
     const data = paginate(sorted, currentPage, pageSize);
-    return { totalCount: items.length, data: items };
+    return { totalCount: items.length, data: data };
   };
 
   getTotalPrice = (items) => {
     let sum = 0;
     items.map((item) => {
-      sum = sum + item.price * item.boughtAmount;
+      return sum = sum + item.price * item.boughtAmount;
     });
-    return sum;
+    return Math.round(sum * 100) / 100;
   };
 
   renderButton(
@@ -65,20 +65,22 @@ class Cart extends Component {
       <React.Fragment>
         <NavBar currentPage="cart" />
         <div className="container" style={{ color: "white", marginTop: "8%" }}>
+        <div
+            style={{
+              marginLeft: "1.3%",
+              marginTop: "10%"
+            }}
+          >
+            <h3 className="display-4">
+              <b>My Cart</b>
+            </h3>
+          </div>
           <div className="row ">
             <div className="col">
-            <Link
-                className="btn btn-primary btn-md"
-                to={{ pathname: "/checkout", aboutProps: { data: data } }}
-                role="button"
-              >
-                Checkout
-              </Link>
               <p
                 style={{
                   marginLeft: "1.3%",
                   marginBottom: "0.001%",
-                  marginTop: "3%",
                   fontSize: "14px",
                 }}
               >
@@ -93,6 +95,13 @@ class Cart extends Component {
               />
               <br></br>
               <h3><b>Total:</b> {this.getTotalPrice(data)}</h3>
+              <Link
+                className="btn btn-primary btn-md"
+                to={{ pathname: "/checkout", aboutProps: { data: data } }}
+                role="button"
+              >
+                Checkout
+              </Link>
 
               <div className="fixed-bottom" style={{ left: "22%" }}>
                 <Pagination

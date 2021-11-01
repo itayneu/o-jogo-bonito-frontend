@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import configuration from "../services/configuration.json";
 
-
 class NavBar extends Component {
+  onClick = async () => {
+    Cookies.remove("ojb");
+  }
+  
   render() {
     let username = "";
-    if (Cookies.get("oJogoBonito")) {
-      username = JSON.parse(Cookies.get("oJogoBonito")).username;
-      //if (JSON.parse(Cookies.get("oJogoBonito")).username == "admin")
-//username = "admin";
+    if (Cookies.get("ojb")) {
+      username = JSON.parse(Cookies.get("ojb")).username;
     }
+    
     let { currentPage } = this.props;
     return (
       <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -106,12 +108,13 @@ class NavBar extends Component {
               </Link>
             </li>
             <li
-              style={{
+              style={{ visibility: `${
+                currentPage === "login" || currentPage === "register" || username !== "admin"
+                  ? "hidden"
+                  : "visible"
+                }`,
                 marginLeft: "15px",
                 marginRight: "15px",
-                visibility: `${
-                  username === "admin" ? "visible" : "hidden"
-                }`,
               }}
               className="nav-item active"
             >
@@ -124,22 +127,17 @@ class NavBar extends Component {
                 <span className="sr-only">(current)</span>
               </Link>
             </li>
-            <li
-              style={{ visibility: `${
+          </ul>
+          <div className="text-white" 
+            style={{ visibility: `${
                 currentPage === "login" || currentPage === "register"
                   ? "hidden"
                   : "visible"
-                }`,
-                marginLeft: "15px", 
-                marginRight: "15px" }}
-              className="nav-item active"
-            >
-              <Link className="nav-link" to="/contactUs">
+                }`
+              }}>
                 {" "}
-                <b> Hello, {username} </b> <span className="sr-only">(current)</span>
-              </Link>
-            </li>
-          </ul>
+                <b> Hello, {username} </b> 
+              </div>
           <form
             className="form-inline my-2 my-lg-0"
             style={{
@@ -168,7 +166,7 @@ class NavBar extends Component {
                 className="btn btn-danger"
                 type="button"
                 style={{ color: "white", background: "#272744" }}
-                onClick={Cookies.remove("oJogoBonito")}
+                onClick={this.onClick}
               >
                 Logout
               </button>

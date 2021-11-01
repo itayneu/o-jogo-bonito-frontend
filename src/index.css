@@ -2,7 +2,7 @@ body {
   height: 100%;
   margin: 0;
   padding: 0 0 0 0;
-  background-image: url(./images/med.jpg);
+  background-image: url(./images/bg.jpg);
   font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -10,7 +10,7 @@ body {
 
 .navbar {
   margin-bottom: 15%;
-  background-image: url(./images/medup.jpg);
+  background-image: url(./images/bar.jpg);
 }
 
 button {
@@ -21,9 +21,6 @@ th {
   cursor: pointer;
 }
 
-code {
-  font-family: sans-serif;
-}
 tbody tr:hover {
   cursor: pointer;
   background-color: rgba(184, 212, 239, 0.5);
@@ -35,43 +32,4 @@ tbody tr:hover {
 
 .folderGridLink {
   color: black;
-}
-
-.follow {
-  background-color: #3897f0 !important;
-  border: 1px solid #3897f0 !important;
-  border-radius: 4px;
-  color: #fff;
-  margin-top: 20px !important;
-}
-
-.DayPicker {
-  width: 100%;
-  height: 50%;
-}
-
-.modal-dialog {
-  width: 100%;
-  height: 93%;
-  margin: 0;
-  padding: 0;
-}
-
-.modal-content {
-  height: 100%;
-  width: 100%;
-}
-
-.modal-body {
-  margin-bottom: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.modal-header {
-  height: 7%;
-}
-
-.modal-footer {
-  height: 5%;
 }

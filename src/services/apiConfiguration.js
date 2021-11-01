@@ -1,11 +1,6 @@
-import http from "./httpService";
 import { toast } from "react-toastify";
 import configuration from "../services/configuration.json";
-
-const headers = {
-  "Content-Type": "application/json;charset=UTF-8",
-  "Access-Control-Allow-Origin": "*",
-};
+import http from "./httpService";
 
 export async function getData(type) {
   try {

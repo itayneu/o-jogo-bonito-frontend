@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Products from "./products/Products";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Products from "./products";
 import Cart from "./cart";
 import { getData } from "../services/apiConfiguration";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class ShopCoordinator extends Component {
   state = { items: [], pageToDisplay: "products" };
@@ -20,7 +20,7 @@ class ShopCoordinator extends Component {
     const pageToDisplay = window.location.href.substring(
       window.location.href.lastIndexOf("/") + 1
     );
-    if (this.state.pageToDisplay != pageToDisplay) {
+    if (this.state.pageToDisplay !== pageToDisplay) {
       this.setState({ pageToDisplay });
     }
   }
@@ -33,15 +33,25 @@ class ShopCoordinator extends Component {
   };
 
   handleIncrement = (item) => {
-    if ("boughtAmount" in item) {
-      item.boughtAmount++;
-    } else item.boughtAmount = 1;
-    const items = [...this.state.items];
-    const index = this.getIndexOf(item);
-    items[index] = { ...item };
-    this.setState({ items });
-    toast(item.boughtAmount + " " + item.itemName + " are in the cart");
-    // console.log(item);
+    if (item.currentAmount <= 0) toast.error(item.itemName + " is out of stock");
+    else {
+      if ("boughtAmount" in item) {
+        if (item.boughtAmount === item.currentAmount) toast.warn("We have only " + item.boughtAmount + " " + item.itemName + " in stock");
+        else {
+          item.boughtAmount++;
+          toast(item.boughtAmount + " " + item.itemName + " added to the cart");
+        } 
+      } 
+      else {
+        item.boughtAmount = 1;
+        toast(item.boughtAmount + " " + item.itemName + " added to the cart");
+      }
+      const items = [...this.state.items];
+      const index = this.getIndexOf(item);
+      items[index] = { ...item };
+      this.setState({ items });      
+      console.log(item);
+    }
   };
 
   handleDecrement = (item) => {
@@ -58,8 +68,6 @@ class ShopCoordinator extends Component {
     const index = this.getIndexOf(item);
     items[index] = { ...item };
     this.setState({ items });
-    
-    // console.log(item);
   };
 
   render() {

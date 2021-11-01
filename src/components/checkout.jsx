@@ -6,7 +6,7 @@ import { sendTransaction } from "../services/apiConfiguration";
 import moment from "moment";
 import Cookies from "js-cookie";
 
-class CheckOut extends Form {
+class Checkout extends Form {
   state = {
     purchases: [],
     data: { cardHolder: "", cardNumber: "", expiration: "", cvv: "" },
@@ -30,16 +30,14 @@ class CheckOut extends Form {
     cvv: Joi.string().required().min(3).label("CVV"),
   };
 
-  renderSubmitButton = async () => {
+  onClick = async () => {
     let dataToSend = {};
     dataToSend.purchases = this.state.purchases;
     dataToSend.paymentData = this.state.data;
-    dataToSend.date = moment().format("HH:mm DD/MM/YYY");
-    dataToSend.username = JSON.parse(Cookies.get("oJogoBonito")).username;
-    alert(dataToSend.username);
+    dataToSend.date = moment().format("HH:mm DD/MM/YYYY");
+    dataToSend.username = JSON.parse(Cookies.get("ojb")).username;
     let result = await sendTransaction(dataToSend);
     console.log(result);
-    console.log(dataToSend);
   };
 
   render() {
@@ -58,9 +56,9 @@ class CheckOut extends Form {
             </div>
             <Link to="/checkoutMessage">
               <button
-              disabled={this.validate()}
+                disabled={this.validate()}
                 className="btn btn-primary"
-                onClick={async () => this.renderSubmitButton}
+                onClick={this.onClick}
               >
                 Send
               </button>
@@ -72,4 +70,4 @@ class CheckOut extends Form {
   }
 }
 
-export default CheckOut;
+export default Checkout;

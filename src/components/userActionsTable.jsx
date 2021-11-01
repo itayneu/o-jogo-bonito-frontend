@@ -9,8 +9,8 @@ class UserActionsTable extends Component {
       content: (data) => data.date,
     },
     {
-      path: "numberOfPurchases",
-      label: "Last Name",
+      path: "items",
+      label: "Items",
       content: (data) => data.purchases.length,
     },
   ];

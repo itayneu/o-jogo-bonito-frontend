@@ -6,14 +6,14 @@ import NavBar from "./navBar";
 
 class ContactUs extends Form {
   state = {
-    data: { fullname: "", username: "", message: "" },
+    data: { fullname: "", email: "", message: "" },
     errors: {},
     navigate: false
   };
 
   schema = {
     fullname: Joi.string().required().label("Full name"),
-    username: Joi.string().required().min(3).label("Username"),
+    email: Joi.string().required().email().label("Email"),
     message: Joi.string().required().label("Message"),
   };
 
@@ -56,7 +56,7 @@ class ContactUs extends Form {
           <form style={{ marginLeft: "1.3%", border: "none" }}>
             <div style={{ width: "40%" }}>
               {this.renderInput("fullname", "Full name")}
-              {this.renderInput("username", "Username")}
+              {this.renderInput("email", "Email")}
             </div>
             <div style={{ width: "40%" }}>
               {this.renderInput("message", "Message")}

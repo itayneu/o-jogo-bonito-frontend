@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import NavBar from "../navBar";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import NavBar from "../navBar";
 import "./stores.css";
 
 class Stores extends Component {
@@ -85,7 +85,6 @@ class Stores extends Component {
               Fri 10:00 - 15:00
               <br />
             </div>
-            
             <div
               style={{
                 marginLeft: "1.3%",
@@ -96,7 +95,7 @@ class Stores extends Component {
             >
               <Map 
                   google={this.props.google}
-                  style={{width: '50%', height: '50%', position: 'relative'}}
+                  style={{width: '36%', height: '50%', position: 'relative'}}
                   zoom={13}
                   initialCenter={{ lat: 32.101044, lng: 34.803272}}
               >

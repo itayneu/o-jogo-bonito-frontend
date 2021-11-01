@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Table from "./common/table";
-//import { folderTypes } from "./../services/fakeFolderTypesService";
 
 class AdminDataTable extends Component {
   columnsUsers = [
@@ -53,7 +52,7 @@ class AdminDataTable extends Component {
     const { data, onSort, sortColumn, dataType, tableSource } = this.props;
     let columns;
     if (dataType == null) {
-      columns = this.columnsUsers;
+      columns = this.columnsItems;
     } else {
       columns = dataType === "Users" ? this.columnsUsers : this.columnsItems;
     }

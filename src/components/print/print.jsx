@@ -1,10 +1,10 @@
 import React from "react";
+import Joi from "joi-browser";
 import { Link } from "react-router-dom";
 import configuration from "../../services/configuration.json";
 import NavBar from "../navBar";
-import "./print.css";
-import Joi from "joi-browser";
 import Form from "../common/form";
+import "./print.css";
 
 class Print extends Form {
   state = {
@@ -17,12 +17,10 @@ class Print extends Form {
     number: Joi.number().required().min(1).max(99).label("Number"),
   };
 
-  
-
   render() {
     let location = this.props.location.customObject
-    let image = (location == undefined) ? "ajax_home_21_22" : location.image;
-    let printColor = (location == undefined) ? "white" : location.color;
+    let image = (location === undefined) ? "ajax_home_21_22" : location.image;
+    let printColor = (location === undefined) ? "white" : location.color;
     const divStyle = {
       color: printColor,
     }; 
@@ -53,8 +51,6 @@ class Print extends Form {
           >
             <p>
               Choose a name and a number to preview your personalized shirt:
-              <br />
-             
             </p>
           </div>
           <form style={{ marginLeft: "1.3%", border: "none" }}>
@@ -71,7 +67,6 @@ class Print extends Form {
             </div>
           </form>
           <br/>
-          
           <div 
           class="image"
           style={{
@@ -81,8 +76,8 @@ class Print extends Form {
             fontSize: "20px",
           }}>
             <img src={`${configuration.imageData}/${image}_back.jpg`} alt="" height="500" />    
-            <div class="name" style={divStyle}>{this.state.data.name}<br /></div>
-            <div class="number" style={divStyle}>{this.state.data.number}<br /></div>
+            <div className="name" style={divStyle}>{this.state.data.name}<br /></div>
+            <div className="number" style={divStyle}>{this.state.data.number}<br /></div>
             </div><br/>
           </div>     
       </React.Fragment>

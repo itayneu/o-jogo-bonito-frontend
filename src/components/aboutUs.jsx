@@ -40,8 +40,7 @@ class AboutUs extends Component {
             <br />
             or any other beautiful shirt,
             <br />
-            in one click.
-            
+            directly from your home in few clicks.
           </div>
           <div style={{
               marginLeft: "1.3%",

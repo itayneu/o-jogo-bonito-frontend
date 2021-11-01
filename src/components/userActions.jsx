@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import _ from "lodash";
+import { Link } from "react-router-dom";
 import { getUser } from "../services/apiConfiguration";
 import NavBar from "./navBar";
 import { paginate } from "../utils/paginate";
-import _ from "lodash";
 import UserActionsTable from "./userActionsTable";
 import Pagination from "./common/pagination";
 
@@ -53,8 +54,17 @@ class UserActions extends Component {
     return (
       <React.Fragment>
         <NavBar currentPage="admin" />
-        <div className="container" style={{ marginTop: "8%" }}>
-          <h1>{`${this.state.user.firstName} ${this.state.user.lastName} History Data`}</h1>
+        <div className="container" style={{ color:"white", marginTop: "8%" }}>
+        <div
+            style={{
+              marginLeft: "1.3%",
+              marginTop: "10%"
+            }}
+          >
+            <h3 className="display-4">
+              <b>{`${this.state.user.firstName} ${this.state.user.lastName}'s History Data`}</b>
+            </h3>
+          </div>
           <div className="row ">
             <div className="col">
               <p
@@ -65,7 +75,7 @@ class UserActions extends Component {
                   fontSize: "14px",
                 }}
               >
-                Showing {totalCount} selected history data items.
+                Showing {totalCount} selected history data items
               </p>
 
               <UserActionsTable
@@ -74,6 +84,13 @@ class UserActions extends Component {
                 onSort={this.handleSort}
                 tableSource="actions"
               />
+              <Link
+                className="btn btn-dark btn-sm"
+                to={{ pathname: "/admin" }}
+                role="button"
+              >
+                Back to admin panel
+              </Link>
               <div className="fixed-bottom" style={{ left: "22%" }}>
                 <Pagination
                   itemsCount={totalCount}

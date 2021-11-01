@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import NavBar from "./navBar";
 
 const CheckoutMessage = () => {
   return (
     <React.Fragment>
+      <NavBar currentPage="cart" />
       <div className="container" style={{color:"white"}}>
         <div className="centered display-4">Thank you for your order!</div>
         <div className="centerd display-5">

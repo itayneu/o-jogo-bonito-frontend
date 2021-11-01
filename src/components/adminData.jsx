@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import _ from "lodash";
 import AdminDataTable from "./adminDataTable";
 import ListGroup from "./common/listGroup";
 import Pagination from "./common/pagination";
 import { getData } from "../services/apiConfiguration";
 import { getDataTypes } from "../services/fakeDataTypesService";
 import { paginate } from "../utils/paginate";
-import _ from "lodash";
 import SearchBox from "./searchBox";
 import NavBar from "./navBar";
 
@@ -30,8 +30,7 @@ class AdminData extends Component {
     users.map(
       (user) => ((user.dataType = "Users"), (user.name = user.firstName))
     );
-    //console.log(JSON.parse(users[5].transactions));
-    console.log(users[5]);
+  
     data = [...users, ...items];
     const dataTypes = [...getDataTypes()];
     const selectedDataType = "Users";
@@ -54,7 +53,6 @@ class AdminData extends Component {
   handleSearch = (query) => {
     this.setState({
       searchQuery: query,
-      //selectedDataType: null,
       currentPage: 1,
     });
   };
@@ -89,7 +87,8 @@ class AdminData extends Component {
 
       if (this.state.selectedDataType === "Items") {
         filtered = filtered.filter((f) =>
-          f.name.toLowerCase().startsWith(searchQuery.toLowerCase())
+          f.name.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
+          f.brand.toLowerCase().startsWith(searchQuery.toLowerCase())
         );
       }
     } else if (selectedDataType)
@@ -112,6 +111,16 @@ class AdminData extends Component {
       <React.Fragment>
         <NavBar currentPage="admin" />
         <div className="container" style={{ marginTop: "8%" }}>
+        <div
+            style={{
+              marginLeft: "1.3%",
+              marginTop: "10%", color: "white"
+            }}
+          >
+            <h3 className="display-4">
+              <b>Admin Panel</b>
+            </h3>
+          </div>
           <div className="row ">
             <div className="col-2">
               <ListGroup
@@ -137,7 +146,7 @@ class AdminData extends Component {
                 }}
               >
                 Showings {totalCount}{" "}
-                {this.state.selectedDataType.toLowerCase()}.
+                {this.state.selectedDataType.toLowerCase()}
               </p>
               <div style={{color:"white"}}>
               <AdminDataTable
@@ -148,9 +157,7 @@ class AdminData extends Component {
                 dataType={this.state.selectedDataType}
                 tableSource="admin"
               />
-
               </div>
-              
               <div className="fixed-bottom" style={{ left: "22%" }}>
                 <Pagination
                   itemsCount={totalCount}
